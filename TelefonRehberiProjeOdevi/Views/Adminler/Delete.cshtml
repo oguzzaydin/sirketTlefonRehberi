@@ -1,0 +1,77 @@
+﻿@model TelefonRehberiProjeOdevi.Models.Adminler
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Bu kullanıcıyı silmek istediğinize emin misiniz?</h3>
+<div>
+    <div class="form-horizontal">
+        <h4>Yeni Admin Kullanıcısı Oluştur</h4>
+        <hr />
+        <h5>Personel Bilgileri</h5>
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Personel.Ad, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Personel.Ad, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Personel.Soyad, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Personel.Soyad, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Personel.Telefon, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Personel.Telefon, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Personel.Departman.DepartmanAdi, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Personel.Departman.DepartmanAdi, new { @class = "form-control" })
+            </div>
+        </div>
+        <h5>Giriş Bilgileri</h5>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Personel.GirisBilgileri.KullaniciAdi, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Personel.GirisBilgileri.KullaniciAdi, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Personel.GirisBilgileri.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Personel.GirisBilgileri.Email, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Personel.Rol.RolAdi, "Kullanıcı Rolü", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Personel.Rol.RolAdi, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }, new { @class = "btn btn-info btn-xs pull-right" })
+            </div>
+        </div>
+    </div>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-danger" /> |
+            @Html.ActionLink("Vazgeç", "Index")
+        </div>
+    }
+</div>

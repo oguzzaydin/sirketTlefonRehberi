@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "YetkiYok";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<p>
+    <h3>Yönlendiriliyorsunuz ....</h3>(3 sn sonra)
+</p>
+
+
+@section scripts{
+    <script> 
+        $(document).ready(function () {
+            var url = '@Url.Action("Index", "Home")';
+            var delay = 3000;
+            setTimeout(function () {
+                window.location = url;
+            }, delay);
+        });
+   </script>
+    
+    
+    
+    
+    }

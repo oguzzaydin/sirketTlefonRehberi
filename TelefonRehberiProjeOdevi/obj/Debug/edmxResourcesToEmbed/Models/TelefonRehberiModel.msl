@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TelefonRehberiDBModelStoreContainer" CdmEntityContainer="TelefonRehberiDBEntities">
+    <EntitySetMapping Name="Calisanlar">
+      <EntityTypeMapping TypeName="TelefonRehberiDBModel.Calisanlar">
+        <MappingFragment StoreEntitySet="Calisanlar">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Ad" ColumnName="Ad" />
+          <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Eposta" ColumnName="Eposta" />
+          <ScalarProperty Name="DepartmanID" ColumnName="DepartmanID" />
+          <ScalarProperty Name="YoneticiID" ColumnName="YoneticiID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departmanlar">
+      <EntityTypeMapping TypeName="TelefonRehberiDBModel.Departmanlar">
+        <MappingFragment StoreEntitySet="Departmanlar">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DepartmanAdi" ColumnName="DepartmanAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GirisBilgileri">
+      <EntityTypeMapping TypeName="TelefonRehberiDBModel.GirisBilgileri">
+        <MappingFragment StoreEntitySet="GirisBilgileri">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Eposta" ColumnName="Eposta" />
+          <ScalarProperty Name="sifre" ColumnName="sifre" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="CalisanId" ColumnName="CalisanId" />
+          <ScalarProperty Name="YoneticiId" ColumnName="YoneticiId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roller">
+      <EntityTypeMapping TypeName="TelefonRehberiDBModel.Roller">
+        <MappingFragment StoreEntitySet="Roller">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RoleAdi" ColumnName="RoleAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="TelefonRehberiDBModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Yoneticiler">
+      <EntityTypeMapping TypeName="TelefonRehberiDBModel.Yoneticiler">
+        <MappingFragment StoreEntitySet="Yoneticiler">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TerfiTarihi" ColumnName="TerfiTarihi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

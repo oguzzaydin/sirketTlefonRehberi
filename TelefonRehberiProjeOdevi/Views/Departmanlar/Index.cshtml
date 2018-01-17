@@ -1,0 +1,64 @@
+﻿@model IEnumerable<TelefonRehberiProjeOdevi.Models.Departmanlar>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<p>
+    @Html.ActionLink("Departmann Ekle", "Create", null, new { @class = "btn btn-success btn-xs" })
+</p>
+
+
+
+
+
+<div class="container-fluid">
+    <!-- Breadcrumbs-->
+    <!-- Example DataTables Card-->
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i> Deparmanlar Tablosu
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DepartmanAdi)
+                            </th>
+                            <th>
+                                İşlemler
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DepartmanAdi)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-info btn-xs" })
+                                    @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "btn btn-success btn-xs" })
+                                    @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-xs" })
+                                </td>
+
+                            </tr>
+                            
+                            
+                           
+                         
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer small text-muted">Son güncelleme at 11:59 PM</div>
+    </div>
+</div>

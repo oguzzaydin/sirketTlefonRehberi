@@ -1,0 +1,78 @@
+﻿@model IEnumerable<TelefonRehberiProjeOdevi.Models.Calisanlar>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<p>
+    @Html.ActionLink("Yeni Çalışan Ekle", "Create", null, new { @class = "btn btn-success btn-xs" })
+</p>
+
+<div class="container-fluid">
+    <!-- Breadcrumbs-->
+    <!-- Example DataTables Card-->
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i> Çalışanlar Tablosu
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.Personel.Ad)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Personel.Soyad)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Personel.Departman.DepartmanAdi)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.BaslangicTarihi)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Personel.Telefon)
+                            </th>
+                            <th>İşlemler</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Personel.Ad)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Personel.Soyad)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Personel.Departman.DepartmanAdi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BaslangicTarihi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => item.Personel.Telefon)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-info btn-xs" }) 
+                                    @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "btn btn-success btn-xs" }) 
+                                    @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-xs" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer small text-muted">Son güncelleme at 11:59 PM</div>
+    </div>
+</div>

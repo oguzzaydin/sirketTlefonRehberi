@@ -1,0 +1,79 @@
+﻿@model IEnumerable<TelefonRehberiProjeOdevi.Models.Duyurular>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Duyurular</h2>
+<p>
+    @Html.ActionLink("Yeni Duyuru Ekle", "Create", null, new { @class = "btn btn-success btn-xs" })
+</p>
+
+
+
+@if (Model.Count() > 0)
+{
+
+<div class="card mb-12">
+    <div class="card-header">
+        <i class="fa fa-bell-o"></i> Duyurular - @Model.FirstOrDefault().EkleyenKisi.Departman.DepartmanAdi
+    </div>
+    <div class="list-group list-group-flush small">
+        @foreach (var item in Model)
+        {
+     
+            <a class="list-group-item list-group-item-action" href="~/Duyurular/Details/@item.Id">
+                <div class="media">
+              
+                    <div class="media-body">
+                        <strong>@item.EkleyenKisi.Ad @item.EkleyenKisi.Soyad   </strong> @item.Baslik
+                        <br />
+                        @if (item.Icerik.Length > 20)
+                        {
+                            <strong>@item.Icerik.Substring(0,20) 
+                            
+                        </strong>
+                             
+                        <br />
+                       
+                        }
+                        else
+                        {
+                            <strong>@item.Icerik</strong>
+                        }
+
+                        <div class="text-muted smaller">@item.EklenmeTarihi</div>
+                    </div>
+                </div>
+           
+            </a>
+           
+        }
+                
+    </div>
+    <div class="card-footer small text-muted">@Model.FirstOrDefault().EklenmeTarihi tarihinde güncellendi.</div>
+</div>
+}
+else
+{
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-bell-o"></i> Duyurular
+        </div>
+        <div class="list-group list-group-flush small">
+            <a class="list-group-item list-group-item-action" href="#">
+                <div class="media">
+                    <div class="media-body">
+                        <strong>Henüz bir duyuru eklenmedi.</strong>
+                        <div class="text-muted smaller">@DateTime.Now</div>
+                    </div>
+                </div>
+            </a>
+           
+           
+        </div>
+        <div class="card-footer small text-muted"> @DateTime.Now</div>
+    </div>
+}

@@ -1,0 +1,25 @@
+﻿@model TelefonRehberiProjeOdevi.Models.Duyurular
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Başlık : @Model.Baslik - /Faruk Tur
+    </div>
+    <div class="panel-body">
+        <p>
+            @Model.Icerik
+        </p>
+    </div>
+
+</div>
+<p>
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id })
+    @Html.ActionLink("Sil", "Delete", new { id = Model.Id }) |
+    @Html.ActionLink("Geri Dön", "Index")
+</p>

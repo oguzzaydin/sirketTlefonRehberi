@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SirketDBModelStoreContainer" CdmEntityContainer="SirketDBEntities">
+    <EntitySetMapping Name="Admin">
+      <EntityTypeMapping TypeName="SirketDBModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CalisanId" ColumnName="CalisanId" />
+          <ScalarProperty Name="BaslangicTarihi" ColumnName="BaslangicTarihi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departmanlar">
+      <EntityTypeMapping TypeName="SirketDBModel.Departmanlar">
+        <MappingFragment StoreEntitySet="Departmanlar">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DepartmanAdi" ColumnName="DepartmanAdi" />
+          <ScalarProperty Name="YoneticiId" ColumnName="YoneticiId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Duyurular">
+      <EntityTypeMapping TypeName="SirketDBModel.Duyurular">
+        <MappingFragment StoreEntitySet="Duyurular">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Baslik" ColumnName="Baslik" />
+          <ScalarProperty Name="Icerik" ColumnName="Icerik" />
+          <ScalarProperty Name="DuyuruEkleyen" ColumnName="DuyuruEkleyen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GenelMudur">
+      <EntityTypeMapping TypeName="SirketDBModel.GenelMudur">
+        <MappingFragment StoreEntitySet="GenelMudur">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CalisanId" ColumnName="CalisanId" />
+          <ScalarProperty Name="BaslangicTarihi" ColumnName="BaslangicTarihi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GirisBilgileri">
+      <EntityTypeMapping TypeName="SirketDBModel.GirisBilgileri">
+        <MappingFragment StoreEntitySet="GirisBilgileri">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+          <ScalarProperty Name="PersonelId" ColumnName="PersonelId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GirisLoglari">
+      <EntityTypeMapping TypeName="SirketDBModel.GirisLoglari">
+        <MappingFragment StoreEntitySet="GirisLoglari">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="KullaniciKim" ColumnName="KullaniciKim" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+          <ScalarProperty Name="İslemSonucu" ColumnName="İslemSonucu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mudur">
+      <EntityTypeMapping TypeName="SirketDBModel.Mudur">
+        <MappingFragment StoreEntitySet="Mudur">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CalisanId" ColumnName="CalisanId" />
+          <ScalarProperty Name="BaslangicTarihi" ColumnName="BaslangicTarihi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Personel">
+      <EntityTypeMapping TypeName="SirketDBModel.Personel">
+        <MappingFragment StoreEntitySet="Personel">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Ad" ColumnName="Ad" />
+          <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+          <ScalarProperty Name="DepartmanId" ColumnName="DepartmanId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PersonelCalisan">
+      <EntityTypeMapping TypeName="SirketDBModel.PersonelCalisan">
+        <MappingFragment StoreEntitySet="PersonelCalisan">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BaslangicTarihi" ColumnName="BaslangicTarihi" />
+          <ScalarProperty Name="CalisanId" ColumnName="CalisanId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roller">
+      <EntityTypeMapping TypeName="SirketDBModel.Roller">
+        <MappingFragment StoreEntitySet="Roller">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RoleAdi" ColumnName="RoleAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="SirketDBModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

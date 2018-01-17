@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TelefonRehberiDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Calisanlar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Eposta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DepartmanID" Type="Int32" />
+    <Property Name="YoneticiID" Type="Int32" />
+    <NavigationProperty Name="Departmanlar" Relationship="Self.FK_Calisanlar_Departmanlar" FromRole="Calisanlar" ToRole="Departmanlar" />
+    <NavigationProperty Name="Yoneticiler" Relationship="Self.FK_Calisanlar_Yoneticiler" FromRole="Calisanlar" ToRole="Yoneticiler" />
+    <NavigationProperty Name="GirisBilgileri" Relationship="Self.FK_GirisBilgileri_Calisanlar" FromRole="Calisanlar" ToRole="GirisBilgileri" />
+  </EntityType>
+  <EntityType Name="Departmanlar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DepartmanAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Calisanlar" Relationship="Self.FK_Calisanlar_Departmanlar" FromRole="Departmanlar" ToRole="Calisanlar" />
+  </EntityType>
+  <EntityType Name="GirisBilgileri">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Eposta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="sifre" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="CalisanId" Type="Int32" Nullable="false" />
+    <Property Name="YoneticiId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Calisanlar" Relationship="Self.FK_GirisBilgileri_Calisanlar" FromRole="GirisBilgileri" ToRole="Calisanlar" />
+    <NavigationProperty Name="Roller" Relationship="Self.FK_GirisBilgileri_Roller" FromRole="GirisBilgileri" ToRole="Roller" />
+    <NavigationProperty Name="Yoneticiler" Relationship="Self.FK_GirisBilgileri_Yoneticiler" FromRole="GirisBilgileri" ToRole="Yoneticiler" />
+  </EntityType>
+  <EntityType Name="Roller">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="GirisBilgileri" Relationship="Self.FK_GirisBilgileri_Roller" FromRole="Roller" ToRole="GirisBilgileri" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Yoneticiler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TerfiTarihi" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Calisanlar" Relationship="Self.FK_Calisanlar_Yoneticiler" FromRole="Yoneticiler" ToRole="Calisanlar" />
+    <NavigationProperty Name="GirisBilgileri" Relationship="Self.FK_GirisBilgileri_Yoneticiler" FromRole="Yoneticiler" ToRole="GirisBilgileri" />
+  </EntityType>
+  <Association Name="FK_Calisanlar_Departmanlar">
+    <End Role="Departmanlar" Type="Self.Departmanlar" Multiplicity="0..1" />
+    <End Role="Calisanlar" Type="Self.Calisanlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departmanlar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Calisanlar">
+        <PropertyRef Name="DepartmanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Calisanlar_Yoneticiler">
+    <End Role="Yoneticiler" Type="Self.Yoneticiler" Multiplicity="0..1" />
+    <End Role="Calisanlar" Type="Self.Calisanlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Yoneticiler">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Calisanlar">
+        <PropertyRef Name="YoneticiID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GirisBilgileri_Calisanlar">
+    <End Role="Calisanlar" Type="Self.Calisanlar" Multiplicity="1" />
+    <End Role="GirisBilgileri" Type="Self.GirisBilgileri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Calisanlar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GirisBilgileri">
+        <PropertyRef Name="CalisanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GirisBilgileri_Roller">
+    <End Role="Roller" Type="Self.Roller" Multiplicity="1" />
+    <End Role="GirisBilgileri" Type="Self.GirisBilgileri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roller">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GirisBilgileri">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GirisBilgileri_Yoneticiler">
+    <End Role="Yoneticiler" Type="Self.Yoneticiler" Multiplicity="1" />
+    <End Role="GirisBilgileri" Type="Self.GirisBilgileri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Yoneticiler">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GirisBilgileri">
+        <PropertyRef Name="YoneticiId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TelefonRehberiDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Calisanlar" EntityType="Self.Calisanlar" />
+    <EntitySet Name="Departmanlar" EntityType="Self.Departmanlar" />
+    <EntitySet Name="GirisBilgileri" EntityType="Self.GirisBilgileri" />
+    <EntitySet Name="Roller" EntityType="Self.Roller" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Yoneticiler" EntityType="Self.Yoneticiler" />
+    <AssociationSet Name="FK_Calisanlar_Departmanlar" Association="Self.FK_Calisanlar_Departmanlar">
+      <End Role="Departmanlar" EntitySet="Departmanlar" />
+      <End Role="Calisanlar" EntitySet="Calisanlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Calisanlar_Yoneticiler" Association="Self.FK_Calisanlar_Yoneticiler">
+      <End Role="Yoneticiler" EntitySet="Yoneticiler" />
+      <End Role="Calisanlar" EntitySet="Calisanlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GirisBilgileri_Calisanlar" Association="Self.FK_GirisBilgileri_Calisanlar">
+      <End Role="Calisanlar" EntitySet="Calisanlar" />
+      <End Role="GirisBilgileri" EntitySet="GirisBilgileri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GirisBilgileri_Roller" Association="Self.FK_GirisBilgileri_Roller">
+      <End Role="Roller" EntitySet="Roller" />
+      <End Role="GirisBilgileri" EntitySet="GirisBilgileri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GirisBilgileri_Yoneticiler" Association="Self.FK_GirisBilgileri_Yoneticiler">
+      <End Role="Yoneticiler" EntitySet="Yoneticiler" />
+      <End Role="GirisBilgileri" EntitySet="GirisBilgileri" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SirketDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CalisanId" Type="int" />
+    <Property Name="BaslangicTarihi" Type="date" />
+  </EntityType>
+  <EntityType Name="Departmanlar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepartmanAdi" Type="nvarchar" MaxLength="50" />
+    <Property Name="YoneticiId" Type="int" />
+  </EntityType>
+  <EntityType Name="Duyurular">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Baslik" Type="nvarchar(max)" />
+    <Property Name="Icerik" Type="nvarchar(max)" />
+    <Property Name="DuyuruEkleyen" Type="int" />
+  </EntityType>
+  <EntityType Name="GenelMudur">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CalisanId" Type="int" />
+    <Property Name="BaslangicTarihi" Type="date" />
+  </EntityType>
+  <EntityType Name="GirisBilgileri">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KullaniciAdi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sifre" Type="nvarchar" MaxLength="50" />
+    <Property Name="PersonelId" Type="int" />
+    <Property Name="RoleId" Type="int" />
+  </EntityType>
+  <EntityType Name="GirisLoglari">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KullaniciKim" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tarih" Type="date" />
+    <Property Name="İslemSonucu" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Mudur">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CalisanId" Type="int" />
+    <Property Name="BaslangicTarihi" Type="date" />
+  </EntityType>
+  <EntityType Name="Personel">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad" Type="nvarchar" MaxLength="50" />
+    <Property Name="Soyad" Type="nvarchar" MaxLength="50" />
+    <Property Name="Telefon" Type="nvarchar" MaxLength="50" />
+    <Property Name="Adres" Type="nvarchar(max)" />
+    <Property Name="DepartmanId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PersonelCalisan">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BaslangicTarihi" Type="date" />
+    <Property Name="CalisanId" Type="int" />
+  </EntityType>
+  <EntityType Name="Roller">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleAdi" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Admin_Personel">
+    <End Role="Personel" Type="Self.Personel" Multiplicity="0..1" />
+    <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Admin">
+        <PropertyRef Name="CalisanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Departmanlar_Personel">
+    <End Role="Personel" Type="Self.Personel" Multiplicity="0..1" />
+    <End Role="Departmanlar" Type="Self.Departmanlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Departmanlar">
+        <PropertyRef Name="YoneticiId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Duyurular_Personel">
+    <End Role="Personel" Type="Self.Personel" Multiplicity="0..1" />
+    <End Role="Duyurular" Type="Self.Duyurular" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Duyurular">
+        <PropertyRef Name="DuyuruEkleyen" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GenelMudur_Personel">
+    <End Role="Personel" Type="Self.Personel" Multiplicity="0..1" />
+    <End Role="GenelMudur" Type="Self.GenelMudur" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GenelMudur">
+        <PropertyRef Name="CalisanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GirisBilgileri_Personel">
+    <End Role="Personel" Type="Self.Personel" Multiplicity="0..1" />
+    <End Role="GirisBilgileri" Type="Self.GirisBilgileri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GirisBilgileri">
+        <PropertyRef Name="PersonelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GirisBilgileri_Roller">
+    <End Role="Roller" Type="Self.Roller" Multiplicity="0..1" />
+    <End Role="GirisBilgileri" Type="Self.GirisBilgileri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roller">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GirisBilgileri">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mudur_Personel">
+    <End Role="Personel" Type="Self.Personel" Multiplicity="0..1" />
+    <End Role="Mudur" Type="Self.Mudur" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Mudur">
+        <PropertyRef Name="CalisanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PersonelCalisan_Personel">
+    <End Role="Personel" Type="Self.Personel" Multiplicity="0..1" />
+    <End Role="PersonelCalisan" Type="Self.PersonelCalisan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PersonelCalisan">
+        <PropertyRef Name="CalisanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SirketDBModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Departmanlar" EntityType="Self.Departmanlar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Duyurular" EntityType="Self.Duyurular" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GenelMudur" EntityType="Self.GenelMudur" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GirisBilgileri" EntityType="Self.GirisBilgileri" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GirisLoglari" EntityType="Self.GirisLoglari" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mudur" EntityType="Self.Mudur" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Personel" EntityType="Self.Personel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PersonelCalisan" EntityType="Self.PersonelCalisan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roller" EntityType="Self.Roller" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Admin_Personel" Association="Self.FK_Admin_Personel">
+      <End Role="Personel" EntitySet="Personel" />
+      <End Role="Admin" EntitySet="Admin" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Departmanlar_Personel" Association="Self.FK_Departmanlar_Personel">
+      <End Role="Personel" EntitySet="Personel" />
+      <End Role="Departmanlar" EntitySet="Departmanlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Duyurular_Personel" Association="Self.FK_Duyurular_Personel">
+      <End Role="Personel" EntitySet="Personel" />
+      <End Role="Duyurular" EntitySet="Duyurular" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GenelMudur_Personel" Association="Self.FK_GenelMudur_Personel">
+      <End Role="Personel" EntitySet="Personel" />
+      <End Role="GenelMudur" EntitySet="GenelMudur" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GirisBilgileri_Personel" Association="Self.FK_GirisBilgileri_Personel">
+      <End Role="Personel" EntitySet="Personel" />
+      <End Role="GirisBilgileri" EntitySet="GirisBilgileri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GirisBilgileri_Roller" Association="Self.FK_GirisBilgileri_Roller">
+      <End Role="Roller" EntitySet="Roller" />
+      <End Role="GirisBilgileri" EntitySet="GirisBilgileri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mudur_Personel" Association="Self.FK_Mudur_Personel">
+      <End Role="Personel" EntitySet="Personel" />
+      <End Role="Mudur" EntitySet="Mudur" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PersonelCalisan_Personel" Association="Self.FK_PersonelCalisan_Personel">
+      <End Role="Personel" EntitySet="Personel" />
+      <End Role="PersonelCalisan" EntitySet="PersonelCalisan" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
